@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export function NotFound () {
+export function NotFoundPage () {
 	return (
 		<React.Fragment>
 			<div>404 not found</div>

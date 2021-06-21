@@ -3,7 +3,8 @@ import { HashRouter, Routes, Route } from 'react-router-dom';
 import { createClient, Provider } from 'urql';
 
 import { PageLayout } from './PageLayout';
-import { NotFound } from '../routes/NotFound';
+
+import { NotFoundPage } from '../routes/NotFound';
 import { IndexPage } from '../routes/Index';
 import { PostDetailsPage } from '../routes/PostDetails';
 
@@ -22,7 +23,7 @@ export function App () {
 					<Routes>
 						<Route path='/' element={<IndexPage />} />
 						<Route path='/post/:id' element={<PostDetailsPage />} />
-						<Route path='/*' element={<NotFound />} />
+						<Route path='/*' element={<NotFoundPage />} />
 					</Routes>
 				</PageLayout>
 			</HashRouter>
