@@ -9,6 +9,7 @@ import { PageLayout } from './PageLayout';
 import { NotFoundPage } from '../routes/NotFound';
 import { IndexPage } from '../routes/Index';
 import { PostDetailsPage } from '../routes/PostDetails';
+import { LoginPage } from '../routes/Login';
 
 
 let client = createClient({
@@ -26,6 +27,7 @@ export function App () {
 						<Routes>
 							<Route path='/' element={<IndexPage />} />
 							<Route path='/post/:id' element={<PostDetailsPage />} />
+							<Route path='/login' element={<LoginPage />} />
 							<Route path='/*' element={<NotFoundPage />} />
 						</Routes>
 					</PageLayout>

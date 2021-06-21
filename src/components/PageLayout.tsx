@@ -28,7 +28,7 @@ export function PageLayout (props: PageLayoutProps) {
 				</div>
 			</div>
 			<div className='max-w-3xl mx-auto pb-6'>
-				<div className='bg-white rounded -mx-4 py-3 px-4'>
+				<div className='bg-white shadow-md rounded -mx-4 py-3 px-4'>
 					{children}
 				</div>
 			</div>
@@ -69,6 +69,7 @@ function AuthNavBar () {
 	);
 }
 
+
 /// <AuthDetailsFallback />
 function AuthDetailsFallback () {
 	return (
@@ -78,6 +79,7 @@ function AuthDetailsFallback () {
 		/>
 	);
 }
+
 
 /// <AuthDetails />
 function AuthDetails () {
@@ -103,6 +105,7 @@ function AuthDetails () {
 	);
 }
 
+
 /// <NavItem />
 function NavItem (props: NavItemProps) {
 	let { to, children } = props;
@@ -123,6 +126,7 @@ interface NavItemProps {
 	to: string;
 	children: React.ReactNode;
 }
+
 
 /// <NavButton />
 function NavButton (props: NavButtonProps) {
