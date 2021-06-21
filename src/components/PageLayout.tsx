@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useQuery } from 'urql';
 
+import { getRandom } from '../misc/utils';
+
 import { useAuthContext } from '../auth/AuthContext';
 
 import { AuthQuery } from '../queries/Auth';
@@ -16,11 +18,11 @@ export function PageLayout (props: PageLayoutProps) {
 			<div className='w-full bg-blue-700 text-white pb-6 -mb-6'>
 				<div className='max-w-3xl mx-auto py-4 flex gap-4 justify-between'>
 					{/* Left-hand side */}
-					<div className='flex gap-4'>
+					<div className='flex gap-4 items-center'>
 						<NavItem to='/'>Home</NavItem>
 					</div>
 					{/* Right-hand side */}
-					<div className='flex gap-4'>
+					<div className='flex gap-4 items-center'>
 						<AuthNavBar />
 					</div>
 				</div>
@@ -70,9 +72,10 @@ function AuthNavBar () {
 /// <AuthDetailsFallback />
 function AuthDetailsFallback () {
 	return (
-		<div>
-			auth details fallback
-		</div>
+		<div
+			style={{ width: `${getRandom(10, 25)}ch` }}
+			className='motion-safe:animate-pulse h-4 rounded bg-blue-500 mb-1'
+		/>
 	);
 }
 
