@@ -1,21 +1,19 @@
 import React from 'react';
+import { createClient, Provider } from 'urql';
+
+import { IndexPage } from '../routes/Index';
 
 
-function incrementReducer (prevState: number) {
-	return prevState + 1;
-}
+let client = createClient({
+	url: 'https://graphqlzero.almansi.me/api',
+	suspense: true,
+});
 
-export function App (props: AppProps) {
-	let [count, handleIncrement] = React.useReducer(incrementReducer, 0)
 
+export function App () {
 	return (
-		<>
-			<div>Hello world!</div>
-			<button className='bg-red-400' onClick={handleIncrement}>count: {count}</button>
-		</>
+		<Provider value={client}>
+			<IndexPage />
+		</Provider>
 	);
-}
-
-export interface AppProps {
-
 }
