@@ -11,7 +11,7 @@ export function App (props: AppProps) {
 	return (
 		<>
 			<div>Hello world!</div>
-			<button onClick={handleIncrement}>count: {count}</button>
+			<button className='bg-red-400' onClick={handleIncrement}>count: {count}</button>
 		</>
 	);
 }
