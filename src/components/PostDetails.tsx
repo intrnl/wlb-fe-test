@@ -5,7 +5,7 @@ import { useQuery } from 'urql';
 import { getRandom, randomWidth } from '../misc/utils';
 
 import { PostDetailQuery } from '../queries/PostDetails';
-import type { PostDetailData, PostDetailVariables, PostData } from '../queries/PostDetails';
+import type { PostDetailData, PostDetailVariables } from '../queries/PostDetails';
 
 
 export function PostDetails (props: PostDetailsProps) {

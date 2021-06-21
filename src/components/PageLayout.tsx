@@ -1,5 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useQuery } from 'urql';
+
+import { useAuthContext } from '../auth/AuthContext';
+
+import { AuthQuery } from '../queries/Auth';
+import type { AuthData, AuthVariables } from '../queries/Auth';
 
 
 export function PageLayout (props: PageLayoutProps) {
@@ -10,12 +16,12 @@ export function PageLayout (props: PageLayoutProps) {
 			<div className='w-full bg-blue-700 text-white pb-6 -mb-6'>
 				<div className='max-w-3xl mx-auto py-4 flex gap-4 justify-between'>
 					{/* Left-hand side */}
-					<div className='flex'>
+					<div className='flex gap-4'>
 						<NavItem to='/'>Home</NavItem>
 					</div>
-					{/* Right hand side */}
-					<div className='flex'>
-						<NavItem to='/admin'>Admin</NavItem>
+					{/* Right-hand side */}
+					<div className='flex gap-4'>
+						<AuthNavBar />
 					</div>
 				</div>
 			</div>
@@ -32,6 +38,67 @@ export interface PageLayoutProps {
 	children: React.ReactNode;
 }
 
+
+/// <AuthNavBar />
+function AuthNavBar () {
+	let [state, dispatch] = useAuthContext();
+
+	let handleLogout = React.useCallback(() => {
+		dispatch({ type: 'LOGOUT' });
+	}, [dispatch]);
+
+	if (!state.id) {
+		return (
+			<NavItem to='/login'>
+				Login
+			</NavItem>
+		)
+	}
+
+	return (
+		<React.Fragment>
+			<React.Suspense fallback={<AuthDetailsFallback />}>
+				<AuthDetails />
+			</React.Suspense>
+			<NavButton onClick={handleLogout}>
+				Logout
+			</NavButton>
+		</React.Fragment>
+	);
+}
+
+/// <AuthDetailsFallback />
+function AuthDetailsFallback () {
+	return (
+		<div>
+			auth details fallback
+		</div>
+	);
+}
+
+/// <AuthDetails />
+function AuthDetails () {
+	let [state, dispatch] = useAuthContext();
+
+	let [result] = useQuery<AuthData, AuthVariables>({
+		query: AuthQuery,
+		variables: {
+			id: state.id!,
+		},
+	});
+
+	let { id, name } = result.data!.user;
+
+	useEffect(() => {
+		if (!id) dispatch({ type: 'LOGOUT' });
+	}, [id]);
+
+	return (
+		<NavItem to={`/user/${id}`}>
+			{name}
+		</NavItem>
+	);
+}
 
 /// <NavItem />
 function NavItem (props: NavItemProps) {
@@ -53,3 +120,19 @@ interface NavItemProps {
 	to: string;
 	children: React.ReactNode;
 }
+
+/// <NavButton />
+function NavButton (props: NavButtonProps) {
+	return (
+		<a
+			{...props}
+			className='font-bold border-b-2 border-transparent cursor-pointer hover:border-blue-200'
+		/>
+	);
+}
+
+interface NavButtonProps
+	extends React.DetailedHTMLProps<
+		React.AnchorHTMLAttributes<HTMLAnchorElement>,
+		HTMLAnchorElement
+	> {}

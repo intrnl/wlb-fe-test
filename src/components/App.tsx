@@ -2,6 +2,8 @@ import React from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import { createClient, Provider } from 'urql';
 
+import { AuthProvider } from '../auth/AuthContext';
+
 import { PageLayout } from './PageLayout';
 
 import { NotFoundPage } from '../routes/NotFound';
@@ -18,15 +20,17 @@ let client = createClient({
 export function App () {
 	return (
 		<Provider value={client}>
-			<HashRouter>
-				<PageLayout>
-					<Routes>
-						<Route path='/' element={<IndexPage />} />
-						<Route path='/post/:id' element={<PostDetailsPage />} />
-						<Route path='/*' element={<NotFoundPage />} />
-					</Routes>
-				</PageLayout>
-			</HashRouter>
+			<AuthProvider>
+				<HashRouter>
+					<PageLayout>
+						<Routes>
+							<Route path='/' element={<IndexPage />} />
+							<Route path='/post/:id' element={<PostDetailsPage />} />
+							<Route path='/*' element={<NotFoundPage />} />
+						</Routes>
+					</PageLayout>
+				</HashRouter>
+			</AuthProvider>
 		</Provider>
 	);
 }
