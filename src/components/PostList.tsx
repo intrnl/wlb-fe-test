@@ -81,12 +81,12 @@ export function PostItem (props: PostItemProps) {
 
 	return (
 		<div className='py-2'>
-			<h4 className='text-lg h-7 font-normal'>
+			<h4 className='text-lg font-normal'>
 				<Link to={`/post/${data.id}`} className='hover:underline'>
 					{data.title}
 				</Link>
 			</h4>
-			<span className='text-sm h-5'>
+			<span className='text-sm'>
 				<Link to={`/user/${data.user.id}`} className='hover:underline'>
 					{data.user.name}
 				</Link>

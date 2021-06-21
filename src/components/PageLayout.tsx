@@ -16,7 +16,7 @@ export function PageLayout (props: PageLayoutProps) {
 	return (
 		<div className='min-h-screen bg-gray-200'>
 			<div className='w-full bg-blue-700 text-white pb-6 -mb-6'>
-				<div className='max-w-3xl mx-auto py-4 flex gap-4 justify-between'>
+				<div className='max-w-3xl mx-auto px-4 py-4 flex gap-4 justify-between'>
 					{/* Left-hand side */}
 					<div className='flex gap-4 items-center'>
 						<NavItem to='/'>Home</NavItem>
@@ -27,8 +27,8 @@ export function PageLayout (props: PageLayoutProps) {
 					</div>
 				</div>
 			</div>
-			<div className='max-w-3xl mx-auto pb-6'>
-				<div className='bg-white shadow-md rounded -mx-4 py-3 px-4'>
+			<div className='md:max-w-3xl md:mx-auto md:pb-6'>
+				<div className='bg-white py-3 px-4 md:shadow-md md:rounded'>
 					{children}
 				</div>
 			</div>
