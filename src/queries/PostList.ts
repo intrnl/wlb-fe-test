@@ -2,11 +2,18 @@ import { gql } from 'urql';
 
 
 export let PostListQuery = gql`
-	query ($paginate: PaginateOptions) {
-		posts (options: { paginate: $paginate, sort: { field: "id", order: DESC } }) {
+	query ($page: Int, $limit: Int) {
+		posts (options: {
+			paginate: { page: $page, limit: $limit },
+			sort: { field: "id", order: DESC }
+		}) {
 	    items: data {
 	      id
 	      title
+				user {
+					id
+					name
+				}
 	    }
 	    meta {
 	      totalCount
@@ -14,6 +21,11 @@ export let PostListQuery = gql`
 	  }
 	}
 `;
+
+export interface PostListVariables {
+	page: number;
+	limit: number;
+}
 
 export interface PostListData {
 	posts: {
@@ -25,7 +37,12 @@ export interface PostListData {
 export interface PostItemData {
 	id: string;
 	title: string;
+	user: UserData;
 	// body: string;
-	// user: UserData
 	// comments: CommentsListData
+}
+
+export interface UserData {
+	id: string;
+	name: string;
 }

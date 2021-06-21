@@ -1,7 +1,11 @@
 import React from 'react';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { createClient, Provider } from 'urql';
 
+import { PageLayout } from './PageLayout';
+import { NotFound } from '../routes/NotFound';
 import { IndexPage } from '../routes/Index';
+import { PostDetailsPage } from '../routes/PostDetails';
 
 
 let client = createClient({
@@ -13,7 +17,15 @@ let client = createClient({
 export function App () {
 	return (
 		<Provider value={client}>
-			<IndexPage />
+			<HashRouter>
+				<PageLayout>
+					<Routes>
+						<Route path='/' element={<IndexPage />} />
+						<Route path='/post/:id' element={<PostDetailsPage />} />
+						<Route path='/*' element={<NotFound />} />
+					</Routes>
+				</PageLayout>
+			</HashRouter>
 		</Provider>
 	);
 }
