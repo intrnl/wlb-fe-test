@@ -1,77 +1,49 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from 'urql';
 
-import { randomWidth } from '../misc/utils';
+import { getRandom } from '../misc/utils';
 
-import { PostListQuery } from '../queries/PostList';
-import type { PostListData, PostListVariables, PostItemData } from '../queries/PostList';
+import type { PostListData, PostItemData } from '../queries/PostList';
 
 
+/// <PostList />
 export function PostList (props: PostListProps) {
-	let { page } = props;
+	let { data } = props;
+	let { items, meta } = data.posts;
 
 	return (
 		<div className='flex flex-col divide-y'>
-			<React.Suspense fallback={<PostListFallback />}>
-				<PostListInternal page={page} />
-			</React.Suspense>
+			{items.map((item) => (
+				<PostItem key={item.id} data={item} />
+			))}
 		</div>
 	);
 }
 
-export interface PostListProps extends PostListInternalProps {}
+export interface PostListProps {
+	data: PostListData;
+}
 
 
 /// <PostListFallback />
-function PostListFallback () {
-	let count = 9;
+export function PostListFallback (props: PostListFallbackProps) {
+	let { size = 10 } = props;
 
 	let nodes = React.useMemo(() => (
-		Array.from({ length: count }, (_, index) => (
+		Array.from({ length: size }, (_, index) => (
 			<PostItemFallback key={index} />
 		))
-	), [count]);
+	), [size]);
 
 	return (
-		<React.Fragment children={nodes} />
-	);
-}
-
-
-/// <PostListInternal />
-function PostListInternal (props: PostListInternalProps) {
-	let { page = 1 } = props;
-
-	let [result] = useQuery<PostListData, PostListVariables>({
-		query: PostListQuery,
-		variables: { page: page, limit: 10 },
-	});
-
-	let { items, meta } = result.data!.posts;
-
-	return (
-		<React.Fragment>
-			{items.map((data) => (
-				<PostItem key={data.id} data={data} />
-			))}
-		</React.Fragment>
-	);
-}
-
-interface PostListInternalProps {
-	page?: number;
-}
-
-
-/// <PostItemFallback />
-export function PostItemFallback () {
-	return (
-		<div className='py-2 motion-safe:animate-pulse'>
-			<div className={`h-5 my-1.5 rounded bg-gray-400 ${randomWidth()}`} />
-			<div className={`h-4 my-1 rounded bg-gray-400 ${randomWidth()}`} />
+		<div className='flex flex-col divide-y'>
+			{nodes}
 		</div>
 	);
+}
+
+export interface PostListFallbackProps {
+	size?: number;
 }
 
 
@@ -81,7 +53,7 @@ export function PostItem (props: PostItemProps) {
 
 	return (
 		<div className='py-2'>
-			<h4 className='text-lg font-normal'>
+			<h4 className='text-lg'>
 				<Link to={`/post/${data.id}`} className='hover:underline'>
 					{data.title}
 				</Link>
@@ -98,3 +70,21 @@ export function PostItem (props: PostItemProps) {
 export interface PostItemProps {
 	data: PostItemData;
 }
+
+
+/// <PostItemFallback />
+export function PostItemFallback () {
+	return (
+		<div className='py-2 motion-safe:animate-pulse'>
+			<div
+				style={{ width: `${getRandom(10, 75)}%` }}
+				className='h-5 my-1.5 rounded bg-gray-400'
+			/>
+			<div
+				style={{ width: `${getRandom(10, 50)}%` }}
+				className='h-4 my-1 rounded bg-gray-400'
+			/>
+		</div>
+	);
+}
+
