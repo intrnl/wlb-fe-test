@@ -32,9 +32,11 @@ function RecentPostsView () {
 		},
 	});
 
+	let { items, meta } = result.data!.posts;
+
 	return (
-		result.data ? (
-			<PostList data={result.data} />
+		items.length ? (
+			<PostList data={result.data!} />
 		) : (
 			<div className='mt-2'>
 				No recent posts.

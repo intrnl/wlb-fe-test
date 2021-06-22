@@ -9,6 +9,7 @@ import { PageLayout } from './PageLayout';
 import { NotFoundPage } from '../routes/NotFound';
 import { IndexPage } from '../routes/Index';
 import { LoginPage } from '../routes/Login';
+import { UserPage } from '../routes/User';
 import { PostDetailsPage } from '../routes/PostDetails';
 import { PostEditPage } from '../routes/PostEdit';
 
@@ -28,6 +29,7 @@ export function App () {
 						<Routes>
 							<Route path='/' element={<IndexPage />} />
 							<Route path='/login' element={<LoginPage />} />
+							<Route path='/user/:id' element={<UserPage />} />
 							<Route path='/post/*'>
 								<Route path='/:id'>
 									<Route path='/' element={<PostDetailsPage />} />

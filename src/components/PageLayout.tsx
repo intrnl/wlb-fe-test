@@ -142,4 +142,4 @@ interface NavButtonProps
 	extends React.DetailedHTMLProps<
 		React.AnchorHTMLAttributes<HTMLAnchorElement>,
 		HTMLAnchorElement
-	> {}
+> {}
