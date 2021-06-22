@@ -2,6 +2,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'urql';
 
+import { useAuthContext } from '../auth/AuthContext';
+
 import { PostDetailsQuery } from '../queries/PostDetails';
 import type { PostDetailsData, PostDetailsVariables } from '../queries/PostDetails';
 
@@ -10,7 +12,7 @@ import { PostDetails, PostDetailsFallback } from '../components/PostDetails';
 
 /// <PostDetailsPage />
 export function PostDetailsPage () {
-	let { id }: PostDetailsParam = useParams() as any;
+	let { id }: PostDetailsParams = useParams() as any;
 
 	return (
 		<React.Fragment>
@@ -21,7 +23,7 @@ export function PostDetailsPage () {
 	);
 }
 
-interface PostDetailsParam {
+interface PostDetailsParams {
 	id: string;
 }
 
@@ -35,13 +37,18 @@ function PostDetailsView (props: PostDetailsViewProps) {
 		variables: { id },
 	});
 
+	let [auth] = useAuthContext();
+
 	return (
 		result.data ? (
-			<PostDetails data={result.data} />
+			<PostDetails
+				data={result.data}
+				editable={auth.id === result.data.post.user.id}
+			/>
 		) : (
-			<div>404. No post found.</div>
+			<div>404. Post not found.</div>
 		)
 	);
 }
 
-interface PostDetailsViewProps extends PostDetailsVariables {}
+interface PostDetailsViewProps extends PostDetailsParams {}

@@ -8,12 +8,16 @@ import type { PostDetailsData } from '../queries/PostDetails';
 
 /// <PostDetails />
 export function PostDetails (props: PostDetailsProps) {
-	let { data } = props;
-	let { title, user, body } = data.post;
+	let { data, editable = false } = props;
+	let { id, title, user, body } = data.post;
 
 	let paragraphs = React.useMemo(() => (
-		body.split(/\n{2,}/).map((content) => <p>{content}</p>)
+		body.split(/\n/g).map((content, index) => (
+			<p key={index}>{content}</p>
+		))
 	), [body]);
+
+	console.log('details:', data.post);
 
 	return (
 		<div>
@@ -26,6 +30,13 @@ export function PostDetails (props: PostDetailsProps) {
 						{user.name}
 					</Link>
 				</span>
+				{editable && (
+					<div>
+						<Link to={`/post/${id}/edit`}>
+							Edit
+						</Link>
+					</div>
+				)}
 			</div>
 			<div className='flex flex-col gap-1'>
 				{paragraphs}
@@ -36,6 +47,7 @@ export function PostDetails (props: PostDetailsProps) {
 
 export interface PostDetailsProps {
 	data: PostDetailsData;
+	editable?: boolean;
 }
 
 
