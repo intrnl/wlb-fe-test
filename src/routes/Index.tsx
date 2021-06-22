@@ -7,6 +7,7 @@ import type { PostListData, PostListVariables } from '../queries/PostList';
 import { PostList, PostListFallback } from '../components/PostList';
 
 
+/// <IndexPage />
 export function IndexPage () {
 	return (
 		<React.Fragment>
@@ -20,6 +21,8 @@ export function IndexPage () {
 	);
 }
 
+
+/// <RecentPosts />
 function RecentPosts () {
 	let [result] = useQuery<PostListData, PostListVariables>({
 		query: PostListQuery,
