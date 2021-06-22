@@ -12,7 +12,7 @@ export function PostDetails (props: PostDetailsProps) {
 	let { title, user, body } = data.post;
 
 	let paragraphs = React.useMemo(() => (
-		body.split(/\n+/).map((content) => <p>{content}</p>)
+		body.split(/\n{2,}/).map((content) => <p>{content}</p>)
 	), [body]);
 
 	return (
