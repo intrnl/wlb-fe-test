@@ -51,8 +51,6 @@ export function Pagination (props: PaginationProps) {
 		onChange?.(Number(page));
 	};
 
-	console.log({ isPrevMost, isNextMost });
-
 
 	return (
 		<div className='w-max flex rounded border border-gray-300'>

@@ -10,8 +10,6 @@ import type { PostData } from '../queries/PostDetails';
 export function PostAuthoring (props: PostAuthoringProps) {
 	let { disabled = false, data = {}, onSubmit } = props;
 
-	console.log('authoring:', data);
-
 	let [title, handleTitleChange] = useFormValue(data.title);
 	let [body, handleBodyChange] = useFormValue(data.body);
 
