@@ -18,7 +18,7 @@ export function LoginPage () {
 	};
 
 	React.useEffect(() => {
-		if (state.id) navigate('/');
+		if (state.id) navigate('/', { replace: true });
 	}, [state.id]);
 
 	return (
