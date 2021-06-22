@@ -113,7 +113,7 @@ export function PaginationButton (props: PaginationButtonProps) {
 
 	let outerClassName = joinClassNames([
 		'h-8 w-8 grid rounded',
-		'focus:outline-none focus-visible:z-10 focus-visible:ring-2 ring-offset-2',
+		'focus:outline-none focus-visible:z-10 focus-visible:ring-2 ring-offset-1',
 
 		active && 'text-white bg-blue-700 active:bg-blue-700 hover:bg-blue-800 ring-blue-500',
 		!active && 'text-current bg-transparent active:bg-gray-300 hover:bg-gray-300 ring-gray-400',

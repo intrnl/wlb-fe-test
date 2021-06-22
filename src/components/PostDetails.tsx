@@ -5,6 +5,8 @@ import { getRandom } from '../misc/utils';
 
 import type { PostDetailsResult } from '../queries/PostDetails';
 
+import { Button, ButtonLink } from './Form';
+
 
 /// <PostDetails />
 export function PostDetails (props: PostDetailsProps) {
@@ -29,13 +31,13 @@ export function PostDetails (props: PostDetailsProps) {
 					</Link>
 				</span>
 				{editable && (
-					<div>
-						<Link to={`/post/${id}/edit`}>
+					<div className='mt-1 flex gap-2'>
+						<ButtonLink to={`/post/${id}/edit`}>
 							Edit
-						</Link>
-						<button onClick={onDelete}>
+						</ButtonLink>
+						<Button onClick={onDelete}>
 							Delete
-						</button>
+						</Button>
 					</div>
 				)}
 			</div>

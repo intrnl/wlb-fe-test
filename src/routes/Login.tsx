@@ -5,6 +5,8 @@ import { useFormValue } from '../misc/form';
 
 import { AuthContext } from '../auth/AuthContext';
 
+import { TextInput, Button } from '../components/Form';
+
 
 export function LoginPage () {
 	let navigate = useNavigate();
@@ -28,18 +30,23 @@ export function LoginPage () {
 			</h2>
 
 			<form onSubmit={handleFormSubmit}>
-				<label>
-					ID
-					<input
+				<fieldset className='mt-2'>
+					<label htmlFor='input-id' className='mr-2'>
+						ID
+					</label>
+					<TextInput
+						id='input-id'
 						placeholder='id'
 						value={id}
 						onChange={handleIdChange}
 					/>
-				</label>
+				</fieldset>
 
-				<button type='submit'>
-					login
-				</button>
+				<div className='mt-2'>
+					<Button type='submit'>
+						Login
+					</Button>
+				</div>
 			</form>
 		</React.Fragment>
 	)

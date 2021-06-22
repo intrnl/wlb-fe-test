@@ -5,6 +5,8 @@ import { useFormValue } from '../misc/form';
 
 import type { PostData } from '../queries/PostDetails';
 
+import { Button } from './Form';
+
 
 /// <PostAuthoring />
 export function PostAuthoring (props: PostAuthoringProps) {
@@ -37,10 +39,10 @@ export function PostAuthoring (props: PostAuthoringProps) {
 						</Link>
 					</span>
 				)}
-				<div>
-					<button type='submit'>
+				<div className='mt-1'>
+					<Button type='submit'>
 						Submit
-					</button>
+					</Button>
 				</div>
 			</div>
 			<div>
