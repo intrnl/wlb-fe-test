@@ -1,7 +1,9 @@
 import React from 'react';
 
 
-function inputReducer (prevState: any, event: React.ChangeEvent<HTMLInputElement>) {
+type ChangeEvent = React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
+
+function inputReducer (prevState: any, event: ChangeEvent) {
 	return event.target.value;
 }
 
