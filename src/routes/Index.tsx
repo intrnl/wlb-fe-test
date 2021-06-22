@@ -14,7 +14,7 @@ export function IndexPage () {
 			<h2 className='text-lg font-semibold'>
 				Recent Posts
 			</h2>
-			<React.Suspense fallback={<PostListFallback />}>
+			<React.Suspense fallback={<PostListFallback size={5} />}>
 				<RecentPostsView />
 			</React.Suspense>
 		</React.Fragment>
