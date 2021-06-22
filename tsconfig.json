@@ -10,6 +10,6 @@
 		"jsx": "react",
 		"jsxFactory": "React.createElement",
 		"jsxFragmentFactory": "React.Fragment",
-		"types": ["react/next", "react-dom/next"]
+		"types": ["vite/client", "react/next", "react-dom/next"]
 	}
 }
