@@ -4,7 +4,7 @@
 
 ### GraphQL testing API
 
-- The API is entirely static, it is not ephemeral. So while the
+- The API is entirely static, it is not persistent or ephemeral. So while the
   mutation works as expected, the changes will not be reflected.
 
 - There is no authentication within the API, the login page lets you identify
