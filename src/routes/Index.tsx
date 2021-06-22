@@ -15,15 +15,15 @@ export function IndexPage () {
 				Recent Posts
 			</h2>
 			<React.Suspense fallback={<PostListFallback />}>
-				<RecentPosts />
+				<RecentPostsView />
 			</React.Suspense>
 		</React.Fragment>
 	);
 }
 
 
-/// <RecentPosts />
-function RecentPosts () {
+/// <RecentPostsView />
+function RecentPostsView () {
 	let [result] = useQuery<PostListData, PostListVariables>({
 		query: PostListQuery,
 		variables: {
