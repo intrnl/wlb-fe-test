@@ -47,7 +47,7 @@ export function PostAuthoring (props: PostAuthoringProps) {
 			</div>
 			<div>
 				<textarea
-					className='w-full h-96 disabled:text-gray-600'
+					className='w-full h-[75vh] disabled:text-gray-600'
 					disabled={disabled}
 					value={body}
 					onChange={handleBodyChange}
