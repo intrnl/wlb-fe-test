@@ -8,7 +8,7 @@ import type { PostDetailsResult } from '../queries/PostDetails';
 
 /// <PostDetails />
 export function PostDetails (props: PostDetailsProps) {
-	let { data, editable = false } = props;
+	let { data, editable = false, onDelete } = props;
 	let { id, title, user, body } = data.post;
 
 	let paragraphs = React.useMemo(() => (
@@ -33,6 +33,9 @@ export function PostDetails (props: PostDetailsProps) {
 						<Link to={`/post/${id}/edit`}>
 							Edit
 						</Link>
+						<button onClick={onDelete}>
+							Delete
+						</button>
 					</div>
 				)}
 			</div>
@@ -46,6 +49,7 @@ export function PostDetails (props: PostDetailsProps) {
 export interface PostDetailsProps {
 	data: PostDetailsResult;
 	editable?: boolean;
+	onDelete?: () => void;
 }
 
 
