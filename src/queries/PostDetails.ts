@@ -1,7 +1,7 @@
 import { gql } from 'urql';
 
 
-export let PostDetailQuery = gql`
+export let PostDetailsQuery = gql`
 	query ($id: ID!) {
 	  post (id: $id) {
 	    title
@@ -14,11 +14,11 @@ export let PostDetailQuery = gql`
 	}
 `;
 
-export interface PostDetailVariables {
+export interface PostDetailsVariables {
 	id: string | number;
 }
 
-export interface PostDetailData {
+export interface PostDetailsData {
 	post: PostData;
 }
 
