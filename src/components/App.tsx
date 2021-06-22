@@ -12,6 +12,7 @@ import { LoginPage } from '../routes/Login';
 import { UserPage } from '../routes/User';
 import { PostIndexPage } from '../routes/PostIndex';
 import { PostDetailsPage } from '../routes/PostDetails';
+import { PostNewPage } from '../routes/PostNew';
 import { PostEditPage } from '../routes/PostEdit';
 
 
@@ -33,6 +34,7 @@ export function App () {
 							<Route path='/user/:id' element={<UserPage />} />
 							<Route path='/post/*'>
 								<Route path='/' element={<PostIndexPage />} />
+								<Route path='/new' element={<PostNewPage />} />
 								<Route path='/:id'>
 									<Route path='/' element={<PostDetailsPage />} />
 									<Route path='/edit' element={<PostEditPage />} />

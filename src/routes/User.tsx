@@ -2,6 +2,8 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'urql';
 
+import { useAuthContext } from '../auth/AuthContext';
+
 import { UserQuery } from '../queries/User';
 import { UserPostListQuery } from '../queries/UserPostList';
 import type { UserResult, UserVariables } from '../queries/User';
@@ -36,6 +38,8 @@ interface UserParams {
 function UserInfoView (props: UserInfoViewProps) {
 	let { id } = props;
 
+	let [auth] = useAuthContext();
+
 	let [result] = useQuery<UserResult, UserVariables>({
 		query: UserQuery,
 		variables: { id },
@@ -47,6 +51,7 @@ function UserInfoView (props: UserInfoViewProps) {
 		user.id ? (
 			<UserInfo
 				data={result.data!}
+				self={user.id === auth.id}
 			/>
 		) : (
 			<div>404. User not found.</div>

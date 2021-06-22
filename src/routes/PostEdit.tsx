@@ -9,7 +9,6 @@ import { PostEditMutation } from '../queries/PostEdit';
 import type { PostDetailsResult, PostDetailsVariables } from '../queries/PostDetails';
 import type { PostEditVariables } from '../queries/PostEdit';
 
-
 import { PostDetailsFallback } from '../components/PostDetails';
 import { PostAuthoring } from '../components/PostAuthoring';
 import type { PostAuthoringSubmitHandler } from '../components/PostAuthoring';
@@ -51,7 +50,6 @@ function PostEditView (props: PostEditViewProps) {
 
 	/// Form handling
 	let [disabled, setDisabled] = React.useState(false);
-	let [submitted, setSubmitted] = React.useState(false);
 
 	let handlePostSubmit: PostAuthoringSubmitHandler = (data) => {
 		setDisabled(true);
@@ -59,26 +57,22 @@ function PostEditView (props: PostEditViewProps) {
 		let { id, title, body } = data;
 
 		updatePost({ id: id!, data: { title, body } })
+			.then(() => {
+				navigate(`/post/${id}`);
+			})
 			.catch((err) => {
 				alert('Error caught, see console');
 				console.log('Failed to update post');
 				console.error(err);
-			})
-			.finally(() => {
-				setSubmitted(true);
 			});
 	};
 
 	/// Effects handling
-
 	React.useEffect(() => {
-		if (submitted) {
-			navigate(`/post/${id}`);
-		}
-		else if (result.data!.post.id && result.data!.post.user.id !== auth.id) {
+		if (result.data!.post.id && result.data!.post.user.id !== auth.id) {
 			navigate('/', { replace: true });
 		}
-	}, [submitted, result.data, auth.id]);
+	}, [result.data, auth.id]);
 
 
 	return (

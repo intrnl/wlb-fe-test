@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { getRandom } from '../misc/utils';
 
@@ -7,19 +8,27 @@ import type { UserResult } from '../queries/User';
 
 /// <UserInfo />
 export function UserInfo (props: UserInfoProps) {
-	let { data } = props;
+	let { data, self = false } = props;
 
 	return (
 		<div>
 			<h2 className='text-lg font-semibold'>
 				{data.user.name}
 			</h2>
+			{self && (
+				<div>
+					<Link to='/post/new'>
+						Create post
+					</Link>
+				</div>
+			)}
 		</div>
 	);
 }
 
 export interface UserInfoProps {
 	data: UserResult;
+	self?: boolean;
 }
 
 
