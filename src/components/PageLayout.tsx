@@ -6,8 +6,8 @@ import { getRandom } from '../misc/utils';
 
 import { useAuthContext } from '../auth/AuthContext';
 
-import { AuthQuery } from '../queries/Auth';
-import type { AuthData, AuthVariables } from '../queries/Auth';
+import { UserQuery } from '../queries/User';
+import type { UserResult, UserVariables } from '../queries/User';
 
 
 export function PageLayout (props: PageLayoutProps) {
@@ -85,8 +85,8 @@ function AuthDetailsFallback () {
 function AuthDetails () {
 	let [state, dispatch] = useAuthContext();
 
-	let [result] = useQuery<AuthData, AuthVariables>({
-		query: AuthQuery,
+	let [result] = useQuery<UserResult, UserVariables>({
+		query: UserQuery,
 		variables: {
 			id: state.id!,
 		},

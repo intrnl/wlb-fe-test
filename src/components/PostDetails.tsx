@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { getRandom } from '../misc/utils';
 
-import type { PostDetailsData } from '../queries/PostDetails';
+import type { PostDetailsResult } from '../queries/PostDetails';
 
 
 /// <PostDetails />
@@ -46,7 +46,7 @@ export function PostDetails (props: PostDetailsProps) {
 }
 
 export interface PostDetailsProps {
-	data: PostDetailsData;
+	data: PostDetailsResult;
 	editable?: boolean;
 }
 

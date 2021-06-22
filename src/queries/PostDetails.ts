@@ -19,7 +19,7 @@ export interface PostDetailsVariables {
 	id: string | number;
 }
 
-export interface PostDetailsData {
+export interface PostDetailsResult {
 	post: PostData;
 }
 

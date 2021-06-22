@@ -1,7 +1,7 @@
 import { gql } from 'urql';
 
 
-export let AuthQuery = gql`
+export let UserQuery = gql`
 	query ($id: ID!) {
 	  user (id: $id) {
 	    id
@@ -10,11 +10,11 @@ export let AuthQuery = gql`
 	}
 `;
 
-export interface AuthVariables {
+export interface UserVariables {
 	id: string;
 }
 
-export interface AuthData {
+export interface UserResult {
 	user: UserData;
 }
 

@@ -2,10 +2,10 @@ import { gql } from 'urql';
 
 
 export let PostListQuery = gql`
-	query ($page: Int, $limit: Int) {
+	query ($page: Int!, $limit: Int!) {
 		posts (options: {
 			paginate: { page: $page, limit: $limit },
-			sort: { field: "id", order: DESC }
+			sort: { field: "id", order: DESC },
 		}) {
 	    items: data {
 	      id
@@ -27,7 +27,7 @@ export interface PostListVariables {
 	limit: number;
 }
 
-export interface PostListData {
+export interface PostListResult {
 	posts: {
 		items: PostItemData[];
 		meta: { totalCount: number };

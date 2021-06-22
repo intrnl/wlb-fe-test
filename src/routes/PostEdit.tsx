@@ -6,7 +6,7 @@ import { useAuthContext } from '../auth/AuthContext';
 
 import { PostDetailsQuery } from '../queries/PostDetails';
 import { PostEditMutation } from '../queries/PostEdit';
-import type { PostDetailsData, PostDetailsVariables } from '../queries/PostDetails';
+import type { PostDetailsResult, PostDetailsVariables } from '../queries/PostDetails';
 import type { PostEditVariables } from '../queries/PostEdit';
 
 
@@ -38,7 +38,7 @@ function PostEditView (props: PostEditViewProps) {
 	let { id } = props;
 
 	/// Queries/Mutation
-	let [result] = useQuery<PostDetailsData, PostDetailsVariables>({
+	let [result] = useQuery<PostDetailsResult, PostDetailsVariables>({
 		query: PostDetailsQuery,
 		variables: { id },
 	});

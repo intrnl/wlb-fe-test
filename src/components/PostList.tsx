@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { getRandom } from '../misc/utils';
 
-import type { PostListData, PostItemData } from '../queries/PostList';
+import type { PostListResult, PostItemData } from '../queries/PostList';
 
 
 /// <PostList />
@@ -21,7 +21,7 @@ export function PostList (props: PostListProps) {
 }
 
 export interface PostListProps {
-	data: PostListData;
+	data: PostListResult;
 }
 
 

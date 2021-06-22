@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from 'urql';
 
 import { PostListQuery } from '../queries/PostList';
-import type { PostListData, PostListVariables } from '../queries/PostList';
+import type { PostListResult, PostListVariables } from '../queries/PostList';
 
 import { PostList, PostListFallback } from '../components/PostList';
 
@@ -24,7 +24,7 @@ export function IndexPage () {
 
 /// <RecentPostsView />
 function RecentPostsView () {
-	let [result] = useQuery<PostListData, PostListVariables>({
+	let [result] = useQuery<PostListResult, PostListVariables>({
 		query: PostListQuery,
 		variables: {
 			page: 1,

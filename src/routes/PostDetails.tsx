@@ -5,7 +5,7 @@ import { useQuery } from 'urql';
 import { useAuthContext } from '../auth/AuthContext';
 
 import { PostDetailsQuery } from '../queries/PostDetails';
-import type { PostDetailsData, PostDetailsVariables } from '../queries/PostDetails';
+import type { PostDetailsResult, PostDetailsVariables } from '../queries/PostDetails';
 
 import { PostDetails, PostDetailsFallback } from '../components/PostDetails';
 
@@ -32,7 +32,7 @@ interface PostDetailsParams {
 function PostDetailsView (props: PostDetailsViewProps) {
 	let { id } = props;
 
-	let [result] = useQuery<PostDetailsData, PostDetailsVariables>({
+	let [result] = useQuery<PostDetailsResult, PostDetailsVariables>({
 		query: PostDetailsQuery,
 		variables: { id },
 	});
