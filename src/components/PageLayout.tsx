@@ -20,6 +20,7 @@ export function PageLayout (props: PageLayoutProps) {
 					{/* Left-hand side */}
 					<div className='flex gap-4 items-center'>
 						<NavItem to='/'>Home</NavItem>
+						<NavItem to='/post'>Posts</NavItem>
 					</div>
 					{/* Right-hand side */}
 					<div className='flex gap-4 items-center'>

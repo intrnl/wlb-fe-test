@@ -26,10 +26,7 @@ export function IndexPage () {
 function RecentPostsView () {
 	let [result] = useQuery<PostListResult, PostListVariables>({
 		query: PostListQuery,
-		variables: {
-			page: 1,
-			limit: 10,
-		},
+		variables: { page: 1, limit: 5 },
 	});
 
 	let { items, meta } = result.data!.posts;

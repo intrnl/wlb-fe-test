@@ -10,6 +10,7 @@ import { NotFoundPage } from '../routes/NotFound';
 import { IndexPage } from '../routes/Index';
 import { LoginPage } from '../routes/Login';
 import { UserPage } from '../routes/User';
+import { PostIndexPage } from '../routes/PostIndex';
 import { PostDetailsPage } from '../routes/PostDetails';
 import { PostEditPage } from '../routes/PostEdit';
 
@@ -31,6 +32,7 @@ export function App () {
 							<Route path='/login' element={<LoginPage />} />
 							<Route path='/user/:id' element={<UserPage />} />
 							<Route path='/post/*'>
+								<Route path='/' element={<PostIndexPage />} />
 								<Route path='/:id'>
 									<Route path='/' element={<PostDetailsPage />} />
 									<Route path='/edit' element={<PostEditPage />} />

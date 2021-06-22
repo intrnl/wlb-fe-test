@@ -51,6 +51,8 @@ export function Pagination (props: PaginationProps) {
 		onChange?.(Number(page));
 	};
 
+	console.log({ isPrevMost, isNextMost });
+
 
 	return (
 		<div className='w-max flex rounded border border-gray-300'>
@@ -58,7 +60,7 @@ export function Pagination (props: PaginationProps) {
 				aria-label='Go to first page'
 				data-page={1}
 				onClick={handleClick}
-				disabled={!isPrevMost}
+				disabled={isPrevMost}
 			>
 				<img src={FirstPageSvg} />
 			</PaginationButton>
@@ -66,7 +68,7 @@ export function Pagination (props: PaginationProps) {
 				aria-label='Go to previous page'
 				data-page={Math.max(current - 1, 1)}
 				onClick={handleClick}
-				disabled={!isPrevMost}
+				disabled={isPrevMost}
 			>
 				<img src={ChevronLeftSvg} />
 			</PaginationButton>
@@ -75,6 +77,7 @@ export function Pagination (props: PaginationProps) {
 				<PaginationButton
 					key={page}
 					data-page={page}
+					active={page === current}
 					onClick={handleClick}
 				>
 					{page}
@@ -85,7 +88,7 @@ export function Pagination (props: PaginationProps) {
 				aria-label='Go to next page'
 				data-page={Math.min(current + 1, total)}
 				onClick={handleClick}
-				disabled={!isNextMost}
+				disabled={isNextMost}
 			>
 				<img src={ChevronRightSvg} />
 			</PaginationButton>
@@ -93,7 +96,7 @@ export function Pagination (props: PaginationProps) {
 				aria-label='Go to last page'
 				data-page={total}
 				onClick={handleClick}
-				disabled={!isNextMost}
+				disabled={isNextMost}
 			>
 				<img src={LastPageSvg} />
 			</PaginationButton>
@@ -114,8 +117,9 @@ export function PaginationButton (props: PaginationButtonProps) {
 		'h-8 w-8 grid rounded',
 		'focus:outline-none focus-visible:z-10 focus-visible:ring-2 ring-offset-2',
 
-		active && 'bg-blue-500 active:bg-blue-700 hover:bg-blue-700 ring-blue-500',
-		!active && 'bg-transparent active:bg-gray-300 hover:bg-gray-300 ring-gray-400',
+		active && 'text-white bg-blue-700 active:bg-blue-700 hover:bg-blue-800 ring-blue-500',
+		!active && 'text-current bg-transparent active:bg-gray-300 hover:bg-gray-300 ring-gray-400',
+		props.disabled && 'opacity-50',
 	]);
 
 	let innerClassName = joinClassNames([
