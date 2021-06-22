@@ -40,10 +40,10 @@ function PostDetailsView (props: PostDetailsViewProps) {
 	let [auth] = useAuthContext();
 
 	return (
-		result.data ? (
+		result.data!.post.id ? (
 			<PostDetails
-				data={result.data}
-				editable={auth.id === result.data.post.user.id}
+				data={result.data!}
+				editable={auth.id === result.data!.post.user.id}
 			/>
 		) : (
 			<div>404. Post not found.</div>

@@ -17,8 +17,6 @@ export function PostDetails (props: PostDetailsProps) {
 		))
 	), [body]);
 
-	console.log('details:', data.post);
-
 	return (
 		<div>
 			<div className='border-b mb-2 pb-2'>
